@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Thing;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Route::bind('thing', function (string $value) {
+            return new Thing($value);
+        });
     }
 }
